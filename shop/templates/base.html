@@ -1,0 +1,37 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>{% block title %}Мой магазин{% endblock %}</title>
+
+<link href="{% static "css/base.css" %}" rel="stylesheet">
+</head>
+<body>
+<div id="header">
+<a href="/" class="logo">Мой магазин</a>
+<a href="/admin" class="logo">admin</a>
+<a href="/cart" class="logo">Корзина</a>
+</div>
+<div id="subheader">
+<div class="cart">Корзина пустая.</div>
+
+{% block cart %}
+
+{% for item in cart %}
+        {% with product=item.product %}
+            {{ item.name }} {{ item.quantity }} * {{ item.price }} = {{ item.total_price }}<br>
+        {% endwith %}
+{% endfor %}
+{{ cart.get_total_price }}
+
+{% endblock %}
+
+
+</div>
+<div id="content">
+{% block content %}{% endblock %}
+</div>
+
+</body>
+</html>
