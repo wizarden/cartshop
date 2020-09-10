@@ -14,7 +14,8 @@
 <a href="/cart" class="logo">Корзина</a>
 </div>
 <div id="subheader">
-<div class="cart">Корзина пустая.</div>
+
+<div class="cart">{% if cart %}{{ cart|length }}{% else %}Корзина пустая{% endif %}</div>
 
 {% block cart %}
 
@@ -26,6 +27,7 @@
 {{ cart.get_total_price }}
 
 {% endblock %}
+
 
 
 </div>

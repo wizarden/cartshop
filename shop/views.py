@@ -14,6 +14,7 @@ def product_list(request, category_slug=None):
     products = Product.objects.filter(available=True)
 
     cart_product_form = CartAddProductForm()
+    cart_product_form.fields['quantity'].initial = 1
 
     if category_slug:
         category = get_object_or_404(Category, slug=category_slug)
